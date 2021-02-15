@@ -1,0 +1,100 @@
+Create User bean
+package com;
+
+import java.util.Arrays;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import javax.validation.constraints.NotEmpty;
+
+public class User {
+	@Size(min = 5, max = 10, message = "Enter the name between 5 to 10 characters")
+	private String firstname;
+	@Size(min = 5, max = 10, message = "Enter the name between 5 to 10 characters")
+	 private String lastname;
+	 @NotNull(message="Please select a password")
+	 @Length(min=5, max=10, message="Password should be between 5 - 10 charactes")
+	    private String password;
+	 
+	private String gender;
+	private String country;
+	@Email
+	@NotEmpty(message = "Please enter email")
+	private String introduction;
+    
+    @Pattern(regexp="[0-9]+", message="Wrong zip!")// these will create pattern which will allow only number 0-9
+    private String zip;
+	
+	 @Range(max=18,min=5, message="Enter age between 5 to 18.")
+	    private String age;
+	private String visitedCountries[];
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String getIntroduction() {
+		return introduction;
+	}
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+	public String getZip() {
+		return zip;
+	}
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+	public String[] getVisitedCountries() {
+		return visitedCountries;
+	}
+	public void setVisitedCountries(String[] visitedCountries) {
+		this.visitedCountries = visitedCountries;
+	}
+	@Override
+	public String toString() {
+		return "User [firstname=" + firstname + ", lastname=" + lastname + ", password=" + password + ", gender="
+				+ gender + ", country=" + country + ", introduction=" + introduction + ", zip=" + zip + ", age=" + age
+				+ ", visitedCountries=" + Arrays.toString(visitedCountries) + "]";
+	}
+	
+	
+
+}

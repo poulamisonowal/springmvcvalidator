@@ -1,0 +1,100 @@
+Create your view folder
+Create your login.jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User form</title>
+<%-- <link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/files/css/style.css"> --%>
+</head>
+<body>
+	<h4>Submit your information</h4>
+	<hr>
+	<form:form action="displayUserInfo" modelAttribute="user">
+First Name: <form:input path="firstname" required="true" placeholder="Enter First name" />
+		<p />
+		<form:errors path="firstname" cssStyle="color:red" />
+		<p />
+Last Name: <form:input path="lastname" required="true" placeholder="Enter last name" />
+		<p />
+		<form:errors path="lastname" cssStyle="color:red" />
+		<p />
+Password: <form:input path="password"  placeholder="Enter password" />
+		<p />
+		<form:errors path="password" cssStyle="color:red" />
+		<p />
+Gender: Male: <form:radiobutton path="gender" value="Male"
+			required="true" />
+        Female: <form:radiobutton path="gender" value="female"
+			required="true" />
+		<p />
+Email
+        <form:textarea path="introduction" />
+        <p />
+		<form:errors path="introduction" cssStyle="color:red" />
+		<p />
+      
+ Age <form:input path="age"  placeholder="Enter age" />
+		<p />
+		<form:errors path="age" cssStyle="color:red" />
+		<p />
+Zip <form:input path="zip"  placeholder="Enter zip in numbers" />
+		<p />
+		<form:errors path="zip" cssStyle="color:red" />
+		<p />
+Country: <form:select path="country">
+			<form:option value="India"></form:option>
+			<form:option value="USA" label="The United states"></form:option>
+			<form:option value="Ireland"></form:option>
+			<form:option value="Thailand"></form:option>
+		</form:select>
+
+		<p />
+
+
+Visited countries: 
+        China: <form:checkbox path="visitedCountries" value="China" />
+        Taiwan:   <form:checkbox path="visitedCountries" value="Taiwan" />
+        Germany     <form:checkbox path="visitedCountries"
+			value="Germany" />
+        Bhutan       <form:checkbox path="visitedCountries"
+			value="Bhutan" />
+
+		<p />
+		<input type="submit" value="Submit">
+	</form:form>
+</body>
+</html>
+
+Create displayUserInfo.jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+  <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User info</title>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/files/css/style.css">
+</head>
+<body>
+Name: ${user.firstname}<p/>
+LastName: ${user.lastname}<p/>
+Password: ${user.password}<p/>
+Age: ${user.age}<p/>
+Gender: ${user.gender}<p/>
+Country: ${user.country}<p/>
+Introduction: ${user.introduction}<p/> 
+Visited Countries: 
+<ul>
+<c:forEach items="${user.visitedCountries}" var="item">
+<li>${item}</li>
+</c:forEach>
+</ul>
+</body>
+</html>
